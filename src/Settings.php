@@ -21,6 +21,12 @@ class Settings
     /** @var string Format for storing arrays (json/csv/serialize) */
     protected $arrayFormat;
 
+    /** @var string Cache key for settings */
+    protected $cacheKey;
+
+    /** @var int Cache TTL for settings */
+    protected $cacheTtl;
+
     /**
      * Initialize settings manager with storage implementation.
      *
@@ -31,6 +37,8 @@ class Settings
         $this->storage = $storage;
         $this->encrypt = config('settings.encrypt', false);
         $this->arrayFormat = config('settings.array_format', 'json');
+        $this->cacheKey = config('settings.cache.key');
+        $this->cacheTtl = config('settings.cache.ttl');
     }
 
     /**
@@ -40,7 +48,7 @@ class Settings
      */
     public function all(): array
     {
-        return Cache::remember('laravel-settings', 3600, function () {
+        return Cache::remember($this->cacheKey, $this->cacheTtl, function () {
             $data = $this->storage->all();
             return $this->decryptData($data);
         });

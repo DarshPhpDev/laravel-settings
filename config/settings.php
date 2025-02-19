@@ -12,4 +12,9 @@ return [
     'database' => [
         'table' => 'settings',
     ],
+
+    'cache' => [
+        'key' => 'laravel-settings',
+        'ttl' => 3600,
+    ]
 ];
