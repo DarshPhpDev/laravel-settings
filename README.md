@@ -1,6 +1,6 @@
 <p align="center"><img src="/art/socialcard.png" alt="Laravel Settings"></p>
 
-# 🔧 Laravel Settings
+# Laravel Settings
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/darshphpdev/laravel-settings?style=flat-square)](https://packagist.org/packages/darshphpdev/laravel-settings)
 [![Total Downloads](https://img.shields.io/packagist/dt/darshphpdev/laravel-settings?style=flat-square)](https://packagist.org/packages/darshphpdev/laravel-settings)
