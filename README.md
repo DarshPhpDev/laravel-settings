@@ -2,7 +2,9 @@
 
 # 🔧 Laravel Settings
 
-  [![Latest Version on Packagist](https://img.shields.io/packagist/v/darshphpdev/laravel-settings.svg)](https://packagist.org/packages/darshphpdev/laravel-settings) [![Total Downloads](https://img.shields.io/packagist/dt/darshphpdev/laravel-settings.svg)](https://packagist.org/packages/darshphpdev/laravel-settings) [![License](https://img.shields.io/badge/license-MIT-brightgreen)](LICENSE)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/darshphpdev/laravel-settings.svg)](https://packagist.org/packages/darshphpdev/laravel-settings)
+[![Total Downloads](https://img.shields.io/packagist/dt/darshphpdev/laravel-settings.svg)](https://packagist.org/packages/darshphpdev/laravel-settings)
+[![License](https://img.shields.io/packagist/l/darshphpdev/laravel-settings.svg)](https://packagist.org/packages/darshphpdev/laravel-settings)
 
 A flexible Laravel package for managing application settings with support for file or database storage, encryption, and array format customization.
 
