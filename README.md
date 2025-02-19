@@ -5,6 +5,7 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/darshphpdev/laravel-settings?style=flat-square)](https://packagist.org/packages/darshphpdev/laravel-settings)
 [![Total Downloads](https://img.shields.io/packagist/dt/darshphpdev/laravel-settings?style=flat-square)](https://packagist.org/packages/darshphpdev/laravel-settings)
 [![License](https://img.shields.io/badge/license-MIT-brightgreen)](LICENSE)
+
 A flexible Laravel package for managing application settings with support for file or database storage, encryption, and array format customization.
 
   
