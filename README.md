@@ -108,7 +108,7 @@ return [
 
 	// File storage settings
 	'file' => [
-        'path' => storage_path('app/settings.json'),
+		'path' => storage_path('app/settings.json'),
 	],
 
 	// Database storage settings
