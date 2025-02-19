@@ -6,12 +6,26 @@ use DarshPhpDev\LaravelSettings\Storage\Contracts\StorageInterface;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Crypt;
 
+/**
+ * Settings management class for Laravel applications.
+ * Handles storage, retrieval, and encryption of application settings.
+ */
 class Settings
 {
+    /** @var StorageInterface Storage implementation for settings */
     protected $storage;
+
+    /** @var bool Whether to encrypt stored values */
     protected $encrypt;
+
+    /** @var string Format for storing arrays (json/csv/serialize) */
     protected $arrayFormat;
 
+    /**
+     * Initialize settings manager with storage implementation.
+     *
+     * @param StorageInterface $storage Storage implementation
+     */
     public function __construct(StorageInterface $storage)
     {
         $this->storage = $storage;
@@ -19,6 +33,11 @@ class Settings
         $this->arrayFormat = config('settings.array_format', 'json');
     }
 
+    /**
+     * Retrieve all settings from storage.
+     *
+     * @return array All settings with decrypted values
+     */
     public function all(): array
     {
         return Cache::remember('laravel-settings', 3600, function () {
@@ -27,6 +46,13 @@ class Settings
         });
     }
 
+    /**
+     * Get a specific setting value.
+     *
+     * @param string $key Setting key
+     * @param mixed $default Default value if setting doesn't exist
+     * @return mixed The setting value or default
+     */
     public function get(string $key, $default = null)
     {
         $value = $this->all()[$key] ?? $default;
@@ -37,6 +63,12 @@ class Settings
         return $value;
     }
 
+    /**
+     * Store a setting value.
+     *
+     * @param string $key Setting key
+     * @param mixed $value Setting value
+     */
     public function set(string $key, $value): void
     {
         $value = $this->maybeEncrypt($value);
@@ -44,6 +76,12 @@ class Settings
         Cache::forget('laravel-settings');
     }
 
+    /**
+     * Format array values based on configured array format.
+     *
+     * @param array $value Array to format
+     * @return mixed Formatted array value
+     */
     private function maybeDecodeArray(array $value)
     {
         switch ($this->arrayFormat) {
@@ -61,23 +99,43 @@ class Settings
         }
     }
 
+    /**
+     * Remove a specific setting.
+     *
+     * @param string $key Setting key to remove
+     */
     public function forget(string $key): void
     {
         $this->storage->forget($key);
         Cache::forget('laravel-settings');
     }
 
+    /**
+     * Remove all settings.
+     */
     public function clear(): void
     {
         $this->storage->clear();
         Cache::forget('laravel-settings');
     }
 
+    /**
+     * Check if a setting exists.
+     *
+     * @param string $key Setting key to check
+     * @return bool Whether the setting exists
+     */
     public function has(string $key): bool
     {
         return $this->storage->has($key);
     }
 
+    /**
+     * Encrypt value if encryption is enabled.
+     *
+     * @param mixed $value Value to potentially encrypt
+     * @return mixed Encrypted or original value
+     */
     private function maybeEncrypt($value)
     {
         if(!$this->encrypt){
@@ -91,6 +149,12 @@ class Settings
         return Crypt::encryptString($value);
     }
 
+    /**
+     * Decrypt value if encryption is enabled.
+     *
+     * @param mixed $value Value to potentially decrypt
+     * @return mixed Decrypted or original value
+     */
     private function maybeDecrypt($value)
     {
         try {
@@ -108,6 +172,12 @@ class Settings
         }
     }
 
+    /**
+     * Decrypt all values in an array of settings.
+     *
+     * @param array $data Array of settings to decrypt
+     * @return array Decrypted settings
+     */
     private function decryptData(array $data): array
     {
         return array_map(function ($value) {

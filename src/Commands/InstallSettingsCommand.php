@@ -5,11 +5,31 @@ namespace DarshPhpDev\LaravelSettings\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 
+/**
+ * Artisan command to install and configure the Laravel Settings package.
+ * Handles initial setup including driver selection, encryption settings,
+ * and storage configuration.
+ */
 class InstallSettingsCommand extends Command
 {
+    /**
+     * The console command signature.
+     * --driver: Optional storage driver (file/database)
+     * --path: Optional storage path for file driver
+     */
     protected $signature = 'settings:install {--driver=} {--path=}';
+
+    /**
+     * The console command description.
+     */
     protected $description = 'Install the settings package';
 
+    /**
+     * Execute the console command.
+     * Guides the user through package configuration and creates necessary files.
+     *
+     * @return void
+     */
     public function handle()
     {
         // Choose storage driver
@@ -38,10 +58,6 @@ class InstallSettingsCommand extends Command
 
         // Publish config
         File::ensureDirectoryExists(config_path());
-        // File::put(
-        //     config_path('settings.php'),
-        //     "<?php\n\nreturn " . var_export($config, true) . ";\n"
-        // );
 
         $this->putConfig($config);
 
@@ -57,6 +73,17 @@ class InstallSettingsCommand extends Command
         $this->info('Settings package installed successfully!');
     }
 
+    /**
+     * Generate and write the configuration file.
+     * Creates a settings.php file in the config directory with user-defined settings.
+     *
+     * @param array $config Configuration options including:
+     *                      - driver: Storage driver type (file/database)
+     *                      - encrypt: Whether to encrypt stored values
+     *                      - array_format: How to store array values
+     *                      - file/database: Driver-specific settings
+     * @return void
+     */
     protected function putConfig($config)
     {
         File::put(
