@@ -138,8 +138,7 @@ settings()->get('site_name', 'Default site name');
 settings()->set('site_name', 'My Awesome Site');
 
 // Set multiple settings
-settings()
-->set('site_meta', [
+settings()->set('site_meta', [
 	'name' => 'My Awesome Site',
 	'description' => 'A great site'
 ]);
