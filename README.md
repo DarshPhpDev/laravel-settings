@@ -1,10 +1,11 @@
-<p align="center"><img src="/art/socialcard.png" alt="Laravel Api Response Formatter"></p>
+<p align="center"><img src="/art/socialcard.png" alt="Laravel Settings"></p>
 
 # 🔧 Laravel Settings
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/darshphpdev/laravel-settings.svg)](https://packagist.org/packages/darshphpdev/laravel-settings)
-[![Total Downloads](https://img.shields.io/packagist/dt/darshphpdev/laravel-settings.svg)](https://packagist.org/packages/darshphpdev/laravel-settings)
-[![License](https://img.shields.io/packagist/l/darshphpdev/laravel-settings.svg)](https://packagist.org/packages/darshphpdev/laravel-settings)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/darshphpdev/laravel-settings?style=flat-square)](https://packagist.org/packages/darshphpdev/laravel-settings)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/darshphpdev/laravel-settings/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/darshphpdev/laravel-settings/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/darshphpdev/laravel-settings/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/darshphpdev/laravel-settings/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/darshphpdev/laravel-settings?style=flat-square)](https://packagist.org/packages/darshphpdev/laravel-settings)
 
 A flexible Laravel package for managing application settings with support for file or database storage, encryption, and array format customization.
 
