@@ -38,6 +38,8 @@ composer require darshphpdev/laravel-settings
 php artisan settings:install
 ```
 
+<p align="center"><img src="/art/artisan.png" alt="Artisan Command"></p>
+
 This command will:
 - 🎯 Guide you through configuration options
 - 📝 Create the config file
