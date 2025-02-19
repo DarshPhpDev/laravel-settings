@@ -1,0 +1,31 @@
+{
+    "name": "darshphpdev/laravel-settings",
+    "description": "A flexible Laravel package for managing application settings with support for file or database storage, encryption, and array format customization.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "DarshPhpDev\\LaravelSettings\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Mustafa Ahmed",
+            "email": "mustafa.softcode@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0",
+        "illuminate/support": "^7.0|^8.0|^9.0|^10.0|^11.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "DarshPhpDev\\LaravelSettings\\SettingsServiceProvider"
+            ]
+        }
+    }
+}
