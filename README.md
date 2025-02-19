@@ -108,12 +108,12 @@ return [
 
 	// File storage settings
 	'file' => [
-		'path' => storage_path('app/settings.json'),
+        'path' => storage_path('app/settings.json'),
 	],
 
 	// Database storage settings
 	'database' => [
-		'table' => 'settings',
+        'table' => 'settings',
 	],
 
 ];
@@ -139,8 +139,8 @@ settings()->set('site_name', 'My Awesome Site');
 
 // Set multiple settings
 settings()->set('site_meta', [
-	'name' => 'My Awesome Site',
-	'description' => 'A great site'
+    'name' => 'My Awesome Site',
+    'description' => 'A great site'
 ]);
 
 // Get all settings
