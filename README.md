@@ -48,7 +48,7 @@ You can install the package via composer:
 
 ```bash
 
-composer require  darshphpdev/laravel-settings
+composer require darshphpdev/laravel-settings
 
 ```
 
