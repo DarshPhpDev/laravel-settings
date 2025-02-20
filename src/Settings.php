@@ -21,6 +21,15 @@ class Settings
     /** @var string Format for storing arrays (json/csv/serialize) */
     protected $arrayFormat;
 
+    /** @var string Cache key for settings */
+    protected $cacheKey;
+
+    /** @var int Cache TTL for settings */
+    protected $cacheTtl;
+
+    /** @var bool Whether cache is enabled */
+    protected $cacheEnabled;
+
     /**
      * Initialize settings manager with storage implementation.
      *
@@ -31,6 +40,9 @@ class Settings
         $this->storage = $storage;
         $this->encrypt = config('settings.encrypt', false);
         $this->arrayFormat = config('settings.array_format', 'json');
+        $this->cacheKey = config('settings.cache.key');
+        $this->cacheTtl = config('settings.cache.ttl');
+        $this->cacheEnabled = config('settings.cache.enabled');
     }
 
     /**
@@ -40,10 +52,12 @@ class Settings
      */
     public function all(): array
     {
-        return Cache::remember('laravel-settings', 3600, function () {
-            $data = $this->storage->all();
-            return $this->decryptData($data);
-        });
+        return $this->cacheEnabled
+            ? Cache::remember($this->cacheKey, $this->cacheTtl, function () {
+                $data = $this->storage->all();
+                return $this->decryptData($data);
+            })
+            : $this->decryptData($this->storage->all());
     }
 
     /**
@@ -73,7 +87,8 @@ class Settings
     {
         $value = $this->maybeEncrypt($value);
         $this->storage->set($key, $value);
-        Cache::forget('laravel-settings');
+
+        $this->maybeClearSettingsCache();
     }
 
     /**
@@ -107,7 +122,8 @@ class Settings
     public function forget(string $key): void
     {
         $this->storage->forget($key);
-        Cache::forget('laravel-settings');
+
+        $this->maybeClearSettingsCache();
     }
 
     /**
@@ -116,7 +132,8 @@ class Settings
     public function clear(): void
     {
         $this->storage->clear();
-        Cache::forget('laravel-settings');
+
+        $this->maybeClearSettingsCache();
     }
 
     /**
@@ -183,5 +200,18 @@ class Settings
         return array_map(function ($value) {
             return $this->maybeDecrypt($value);
         }, $data);
+    }
+
+    /**
+     * Clear settings cache if cache is enabled
+     *
+     * @param string $key Setting key to remove
+     */
+    private function maybeClearSettingsCache(): void
+    {
+        if ($this->cacheEnabled)
+        {
+            Cache::forget($this->cacheKey);
+        }
     }
 }

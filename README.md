@@ -75,6 +75,13 @@ return [
     'database' => [
         'table' => 'settings',
     ],
+
+    // Cache configurations
+    'cache' => [
+        'key' => 'laravel-settings',
+        'ttl' => 3600,
+        'enabled' => true,
+    ]
 ];
 ```
 

@@ -109,13 +109,20 @@ class InstallSettingsCommand extends Command
                 "    // File storage settings\n" .
                 "    'file' => [\n" .
                 "        'path' => '" . addslashes($config['file']['path']) . "',\n" .
-                "    ]\n"
+                "    ],\n"
                 :
                 "    // Database storage settings\n" .
                 "    'database' => [\n" .
                 "        'table' => '" . $config['database']['table'] . "',\n" .
-                "    ]\n"
+                "    ],\n"
             ) .
+            "\n" .
+            "    // Cache configurations \n" .
+            "    'cache' => [\n" .
+            "        'key' => 'laravel-settings',\n" .
+            "        'ttl' => 3600, \n" .
+            "        'enabled' => true\n" .
+            "    ]\n" .
             "];\n"
         );
     }
