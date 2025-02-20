@@ -120,7 +120,8 @@ class InstallSettingsCommand extends Command
             "    // Cache configurations \n" .
             "    'cache' => [\n" .
             "        'key' => 'laravel-settings',\n" .
-            "        'ttl' => 3600\n" .
+            "        'ttl' => 3600, \n" .
+            "        'enabled' => true\n" .
             "    ]\n" .
             "];\n"
         );

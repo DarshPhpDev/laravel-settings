@@ -80,6 +80,7 @@ return [
     'cache' => [
         'key' => 'laravel-settings',
         'ttl' => 3600,
+        'enabled' => true,
     ]
 ];
 ```
